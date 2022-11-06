@@ -119,7 +119,7 @@ public:
         return result;
     };
 
-    static void contactWithClient(shared_ptr<Client> client)
+    void contactWithClient(shared_ptr<Client> client)
     {
         // Связаться с клиентом по email
     }
@@ -138,7 +138,7 @@ public:
         return result;
     };
 
-    static void contactWithClient(shared_ptr<Client> client)
+    void contactWithClient(shared_ptr<Client> client)
     {
         // Связаться с клиентом по телефону
     }

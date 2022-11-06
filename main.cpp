@@ -119,10 +119,10 @@ public:
         return result;
     };
 
-    void contactWithClient(shared_ptr<Client> client)
-    {
-        // Связаться с клиентом по email
-    }
+    // void contactWithClient(shared_ptr<Client> client)
+    // {
+    //     // Связаться с клиентом по email
+    // }
 };
 
 class PhoneContact : public IContact
@@ -138,10 +138,10 @@ public:
         return result;
     };
 
-    void contactWithClient(shared_ptr<Client> client)
-    {
-        // Связаться с клиентом по телефону
-    }
+    // void contactWithClient(shared_ptr<Client> client)
+    // {
+    //     // Связаться с клиентом по телефону
+    // }
 };
 
 class Report : public IReport

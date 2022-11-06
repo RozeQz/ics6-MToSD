@@ -41,9 +41,9 @@
 
 Проект хранится в репозитории по адресу: [https://bmstu.codes/lsx/mstd/iu6-5-2022/iu6-52b-rozhkovaea/hw](https://bmstu.codes/lsx/mstd/iu6-5-2022/iu6-52b-rozhkovaea/hw).
 
-Докментация проекта: [https://bmstu.codes/lsx/mstd/iu6-5-2022/iu6-52b-rozhkovaea/hw/](https://bmstu.codes/lsx/mstd/iu6-5-2022/iu6-52b-rozhkovaea/hw/).
+Докментация проекта: [https://lsx.pages.bmstu.codes/mstd/iu6-5-2022/iu6-52b-rozhkovaea/hw/](https://lsx.pages.bmstu.codes/mstd/iu6-5-2022/iu6-52b-rozhkovaea/hw/).
 
-Отчёт о покрытии кода тестами: [https://bmstu.codes/lsx/mstd/iu6-5-2022/iu6-52b-rozhkovaea/hw/coverage/](https://bmstu.codes/lsx/mstd/iu6-5-2022/iu6-52b-rozhkovaea/hw/coverage/)
+Отчёт о покрытии кода тестами: [https://lsx.pages.bmstu.codes/mstd/iu6-5-2022/iu6-52b-rozhkovaea/hw/coverage/](https://lsx.pages.bmstu.codes/mstd/iu6-5-2022/iu6-52b-rozhkovaea/hw/coverage/)
 
 ## Выводы
 

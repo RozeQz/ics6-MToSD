@@ -32,7 +32,7 @@ public:
     virtual ~IContact() = default;
 
     virtual vector<pair<string, shared_ptr<IOrder>>> getClientsToContact(vector<shared_ptr<IOrder>> &orders) const = 0;
-    virtual void contactWithClient(shared_ptr<Client> client) = 0;
+    // virtual void contactWithClient(shared_ptr<Client> client) = 0;
 };
 
 class IOutput

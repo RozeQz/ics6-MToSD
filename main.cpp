@@ -3,6 +3,7 @@
 #include <vector>
 #include <cassert>
 #include <iomanip>
+#include <memory>
 
 using namespace std;
 
@@ -108,7 +109,7 @@ public:
 class EmailContact : public IContact
 {
 public:
-    static vector<pair<string, shared_ptr<IOrder>>> getClientsToContact(vector<shared_ptr<IOrder>> &orders)
+    virtual vector<pair<string, shared_ptr<IOrder>>> getClientsToContact(vector<shared_ptr<IOrder>> &orders) const override
     {
         vector<pair<string, shared_ptr<IOrder>>> result;
         for (auto &order : orders)
@@ -118,7 +119,7 @@ public:
         return result;
     };
 
-    static void contactWithClient(shared_ptr<Client> client)
+    void contactWithClient(shared_ptr<Client> client)
     {
         // Связаться с клиентом по email
     }
@@ -127,7 +128,7 @@ public:
 class PhoneContact : public IContact
 {
 public:
-    static vector<pair<string, shared_ptr<IOrder>>> getClientsToContact(vector<shared_ptr<IOrder>> &orders)
+    virtual vector<pair<string, shared_ptr<IOrder>>> getClientsToContact(vector<shared_ptr<IOrder>> &orders) const override
     {
         vector<pair<string, shared_ptr<IOrder>>> result;
         for (auto &order : orders)
@@ -137,7 +138,7 @@ public:
         return result;
     };
 
-    static void contactWithClient(shared_ptr<Client> client)
+    void contactWithClient(shared_ptr<Client> client)
     {
         // Связаться с клиентом по телефону
     }
@@ -223,18 +224,20 @@ int main()
 
     vector<pair<string, shared_ptr<IOrder>>> list_of_orders;
     ConsoleOutput console_output;
+    EmailContact email_contact;
+    PhoneContact phone_contact;
     Report report;
 
-    list_of_orders = EmailContact::getClientsToContact(orders);
+    list_of_orders = email_contact.getClientsToContact(orders);
     report.doReport(list_of_orders, console_output);
 
     Manager manager(orders);
     vector<shared_ptr<IOrder>> unpaid_orders = manager.getUnpaidOrders();
 
-    list_of_orders = EmailContact::getClientsToContact(unpaid_orders);
+    list_of_orders = email_contact.getClientsToContact(unpaid_orders);
     report.doReport(list_of_orders, console_output);
 
-    list_of_orders = PhoneContact::getClientsToContact(unpaid_orders);
+    list_of_orders = phone_contact.getClientsToContact(unpaid_orders);
     report.doReport(list_of_orders, console_output);
 
     return 0;

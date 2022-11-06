@@ -215,9 +215,9 @@ int main()
 
     for (int i = 0; i < clients.size(); i++)
     {
-        unsigned int full_price = rand() % 10000 + 1;
-        unsigned int paid_price = full_price * (rand() % 2);
-        unsigned int id = rand() % 1000;
+        unsigned int full_price = (i + 1) * 10000;
+        unsigned int paid_price = full_price * ((i + 1) % 2);
+        unsigned int id = ((i + 1) * 100) + 47 * (i % 2) + i - 69;
         shared_ptr<IOrder> order = make_unique<Order>(full_price, paid_price, id, clients[i]);
         orders.push_back(order);
     };

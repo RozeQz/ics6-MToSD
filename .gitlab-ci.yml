@@ -1,4 +1,4 @@
-# Указываем образ для Docker
+# РЈРєР°Р·С‹РІР°РµРј РѕР±СЂР°Р· РґР»СЏ Docker
 image: ubuntu:20.04
 
 stages:
@@ -6,28 +6,28 @@ stages:
   - test
   - delivery
 
-# Задаём команды, которые будут выполнены до прогона скриптов
+# Р—Р°РґР°С‘Рј РєРѕРјР°РЅРґС‹, РєРѕС‚РѕСЂС‹Рµ Р±СѓРґСѓС‚ РІС‹РїРѕР»РЅРµРЅС‹ РґРѕ РїСЂРѕРіРѕРЅР° СЃРєСЂРёРїС‚РѕРІ
 before_script:
   - apt-get -y update
   - export DEBIAN_FRONTEND=noninteractive
   - export TZ=Europe/Moscow
 
-# Собираем проект
+# РЎРѕР±РёСЂР°РµРј РїСЂРѕРµРєС‚
 build-code:
   stage: compile
   script:
-    # Устанавливаем пакеты
+    # РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїР°РєРµС‚С‹
     - apt-get -y install gcc g++
     - apt-get -y install make
-    # Собираем
+    # РЎРѕР±РёСЂР°РµРј
     - g++ main.cpp -o main -std=c++17
-  # Сохраняем в артефактах
+  # РЎРѕС…СЂР°РЅСЏРµРј РІ Р°СЂС‚РµС„Р°РєС‚Р°С…
   artifacts:
     paths:
       - main
     expire_in: 30 minutes
 
-# Автотесты
+# РђРІС‚РѕС‚РµСЃС‚С‹
 test-all:
   stage: test
   script:
@@ -35,23 +35,23 @@ test-all:
     - ./main > test-result.txt
     - diff test-sample.txt test-result.txt
 
-# Используем GitLab Pages для публикации Doxygen-документации
+# РСЃРїРѕР»СЊР·СѓРµРј GitLab Pages РґР»СЏ РїСѓР±Р»РёРєР°С†РёРё Doxygen-РґРѕРєСѓРјРµРЅС‚Р°С†РёРё
 pages:
   stage: delivery
   script:
-    # Устанавливаем пакеты
+    # РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїР°РєРµС‚С‹
     - apt-get -y install gcc g++ make doxygen graphviz lcov
-    # Прогоняем Doxygen
+    # РџСЂРѕРіРѕРЅСЏРµРј Doxygen
     - doxygen Doxyfile.cfg
-    # Прогоняем сборку
+    # РџСЂРѕРіРѕРЅСЏРµРј СЃР±РѕСЂРєСѓ
     - g++ main.cpp -o main -std=c++17 -O0 --coverage
-    # Прогоняем тесты
+    # РџСЂРѕРіРѕРЅСЏРµРј С‚РµСЃС‚С‹
     - chmod +x test*
     - ./main
-    # Строим отчёт покрытия
+    # РЎС‚СЂРѕРёРј РѕС‚С‡С‘С‚ РїРѕРєСЂС‹С‚РёСЏ
     - lcov -t "lab" -o lab.info -c -d . --no-external
     - genhtml -o coverage lab.info
-    # Диплоим
+    # Р”РёРїР»РѕРёРј
     - mv doxygen/ public/
     - mv coverage/ public/coverage/
 

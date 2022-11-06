@@ -161,20 +161,24 @@ public:
         cout << endl
              << "\t\t**** Список заказов ****" << endl
              << endl;
-        cout << left
-             << setw(16) << "Номер заказа"
-             << setw(16) << "Статус заказа"
-             << setw(22) << "Связь с клиентом"
-             << "Имя клиента" << endl;
+        cout << "Номер заказа"
+             << "\tСтатус заказа"
+             << "\tСвязь с клиентом"
+             << "\tИмя клиента" << endl;
 
         for (auto &order : orders)
         {
-            cout << left << setw(16) << order.second->getNumber() << setw(16);
+            cout << order.second->getNumber() << "\t\t";
             if (!order.second->isPaid())
-                cout << "Не оплачен!";
+                cout << "Не оплачен";
             else
-                cout << "Оплачен";
-            cout << setw(22) << order.first << order.second->getClient().name;
+                cout << "Оплачен\t";
+            cout << "\t" << order.first;
+            if (order.first.length() < 14)
+                cout << "\t\t";
+            else
+                cout << "\t";
+            cout << order.second->getClient().name;
             cout << endl;
         }
         cout << endl
@@ -197,14 +201,14 @@ int main()
         },
         {
             "Леша",
-            "lexus@mail.ru",
+            "lexusrx300@mail.ru",
             "+79657654321",
         },
         {"Александр",
          "fonparin@bmstu.ru",
          "+76666666666"},
         {"Вова",
-         "vv@bmstu.ru",
+         "vvputin@bmstu.ru",
          "+79853025468"},
         {"Полина",
          "polishgirl@hot.ru",
@@ -229,6 +233,9 @@ int main()
     Report report;
 
     list_of_orders = email_contact.getClientsToContact(orders);
+    report.doReport(list_of_orders, console_output);
+
+    list_of_orders = phone_contact.getClientsToContact(orders);
     report.doReport(list_of_orders, console_output);
 
     Manager manager(orders);

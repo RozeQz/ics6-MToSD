@@ -186,7 +186,7 @@ public:
 
 int main()
 {
-    srand(time(NULL));
+    // srand(time(NULL));
     setlocale(LC_ALL, "Russian");
 
     vector<Client> clients{

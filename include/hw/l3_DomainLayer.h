@@ -21,7 +21,7 @@ class Course : public ICollectable
 {
     std::string _name;
     std::string _language;
-    uint16_t _difficulty;
+    uint8_t _difficulty;
     uint16_t _duration;
     uint32_t _cost;
 
@@ -34,11 +34,11 @@ public:
 
     Course &operator=(const Course &p) = delete;
 
-    Course(const std::string &_name, const std::string &_language, uint16_t _difficulty, uint16_t _duration, uint32_t _cost);
+    Course(const std::string &_name, const std::string &_language, uint8_t _difficulty, uint16_t _duration, uint32_t _cost);
 
     const std::string &getName() const;
     const std::string &getLanguage() const;
-    uint16_t getDifficulty() const;
+    uint8_t getDifficulty() const;
     uint16_t getDuration() const;
     uint32_t getCost() const;
 

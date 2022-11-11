@@ -2,3 +2,4 @@
 
 test/make-result
 diff test/test-result.sample test/test-result.out
+

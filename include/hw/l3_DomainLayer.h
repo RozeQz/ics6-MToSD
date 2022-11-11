@@ -11,30 +11,36 @@ Copyright (c) 2019 МГТУ им. Н.Э. Баумана, кафедра ИУ-6, 
 
 #include "hw/l4_InfrastructureLayer.h"
 
-const size_t MAX_NAME_LENGTH = 50;
-const size_t MIN_YEAR_OF_BIRTH = 1900;
-const size_t MAX_YEAR_OF_BIRTH = 2019;
+const size_t MAX_NAME_LENGTH = 256;
+const size_t MAX_LANGUAGE_LENGTH = 64;
+const size_t MAX_DIFFICULTY = 10;
+const size_t MIN_DURATION = 1;
+const size_t MAX_DURATION = 1024;
 
-class Person : public ICollectable
+class Course : public ICollectable
 {
-    std::string _first_name;
-    std::string _last_name;
-    uint16_t _year_of_birth;
+    std::string _name;
+    std::string _language;
+    uint16_t _difficulty;
+    uint16_t _duration;
+    uint32_t _cost;
 
 protected:
     bool invariant() const;
 
 public:
-    Person() = delete;
-    Person(const Person &p) = delete;
+    Course() = delete;
+    Course(const Course &p) = delete;
 
-    Person &operator=(const Person &p) = delete;
+    Course &operator=(const Course &p) = delete;
 
-    Person(const std::string &first_name, const std::string &last_name, uint16_t year_of_birth);
+    Course(const std::string &_name, const std::string &_language, uint16_t _difficulty, uint16_t _duration, uint32_t _cost);
 
-    const std::string &getFirstName() const;
-    const std::string &getLastName() const;
-    uint16_t getYearOfBirth() const;
+    const std::string &getName() const;
+    const std::string &getLanguage() const;
+    uint16_t getDifficulty() const;
+    uint16_t getDuration() const;
+    uint32_t getCost() const;
 
     virtual bool write(std::ostream &os) override;
 };

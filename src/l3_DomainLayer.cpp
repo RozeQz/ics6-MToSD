@@ -5,46 +5,60 @@
 
 using namespace std;
 
-bool Person::invariant() const
+bool Course::invariant() const
 {
-    return _year_of_birth >= MIN_YEAR_OF_BIRTH && _year_of_birth <= MAX_YEAR_OF_BIRTH && !_first_name.empty() && _first_name.size() <= MAX_NAME_LENGTH && !_last_name.empty() && _last_name.size() <= MAX_NAME_LENGTH;
+    return _duration >= MIN_DURATION && _duration <= MAX_DURATION && _difficulty <= MAX_DIFFICULTY && !_name.empty() && _name.size() <= MAX_NAME_LENGTH && !_language.empty() && _language.size() <= MAX_LANGUAGE_LENGTH;
 }
 
-Person::Person(const std::string &first_name, const std::string &last_name, uint16_t year_of_birth)
-    : _first_name(first_name), _last_name(last_name), _year_of_birth(year_of_birth)
+Course::Course(const std::string &name, const std::string &language, uint8_t difficulty, uint16_t duration, uint32_t cost)
+    : _name(name), _language(language), _difficulty(difficulty), _duration(duration), _cost(cost)
 {
     assert(invariant());
 }
 
-const string &Person::getFirstName() const
+const string &Course::getName() const
 {
-    return _first_name;
+    return _name;
 }
 
-const string &Person::getLastName() const
+const string &Course::getLanguage() const
 {
-    return _last_name;
+    return _language;
 }
 
-uint16_t Person::getYearOfBirth() const
+uint8_t Course::getDifficulty() const
 {
-    return _year_of_birth;
+    return _difficulty;
 }
 
-bool Person::write(ostream &os)
+uint16_t Course::getDuration() const
 {
-    writeString(os, _first_name);
-    writeString(os, _last_name);
-    writeNumber(os, _year_of_birth);
+    return _duration;
+}
+
+uint32_t Course::getCost() const
+{
+    return _cost;
+}
+
+bool Course::write(ostream &os)
+{
+    writeString(os, _name);
+    writeString(os, _language);
+    writeNumber(os, _difficulty);
+    writeNumber(os, _duration);
+    writeNumber(os, _cost);
 
     return os.good();
 }
 
 shared_ptr<ICollectable> ItemCollector::read(istream &is)
 {
-    string first_name = readString(is, MAX_NAME_LENGTH);
-    string last_name = readString(is, MAX_NAME_LENGTH);
-    uint16_t year = readNumber<uint16_t>(is);
+    string name = readString(is, MAX_NAME_LENGTH);
+    string language = readString(is, MAX_LANGUAGE_LENGTH);
+    uint8_t difficulty = readNumber<uint8_t>(is);
+    uint16_t duration = readNumber<uint16_t>(is);
+    uint32_t cost = readNumber<uint32_t>(is);
 
-    return std::make_shared<Person>(first_name, last_name, year);
+    return std::make_shared<Course>(name, language, difficulty, duration, cost);
 }

@@ -53,13 +53,13 @@ bool Application::performCommand(const vector<string> &args)
 
     if (args[0] == "a" || args[0] == "add")
     {
-        if (args.size() != 4)
+        if (args.size() != 6)
         {
             _out.Output("Некорректное количество аргументов команды add");
             return false;
         }
 
-        _col.addItem(make_shared<Person>(args[1].c_str(), args[2].c_str(), stoul(args[3])));
+        _col.addItem(make_shared<Course>(args[1].c_str(), args[2].c_str(), stoul(args[3]), stoul(args[4]), stoul(args[5])));
         return true;
     }
 
@@ -77,13 +77,13 @@ bool Application::performCommand(const vector<string> &args)
 
     if (args[0] == "u" || args[0] == "update")
     {
-        if (args.size() != 5)
+        if (args.size() != 7)
         {
             _out.Output("Некорректное количество аргументов команды update");
             return false;
         }
 
-        _col.updateItem(stoul(args[1]), make_shared<Person>(args[2].c_str(), args[3].c_str(), stoul(args[4])));
+        _col.updateItem(stoul(args[1]), make_shared<Course>(args[2].c_str(), args[3].c_str(), stoul(args[4]), stoul(args[5]), stoul(args[6])));
         return true;
     }
 
@@ -98,11 +98,11 @@ bool Application::performCommand(const vector<string> &args)
         size_t count = 0;
         for (size_t i = 0; i < _col.getSize(); ++i)
         {
-            const Person &item = static_cast<Person &>(*_col.getItem(i));
+            const Course &item = static_cast<Course &>(*_col.getItem(i));
 
             if (!_col.isRemoved(i))
             {
-                _out.Output("[" + to_string(i) + "] " + item.getFirstName() + " " + item.getLastName() + " " + to_string(item.getYearOfBirth()));
+                _out.Output("[" + to_string(i) + "] " + item.getName() + " " + item.getLanguage() + " " + to_string(item.getDifficulty()) + " " + to_string(item.getDuration()) + " " + to_string(item.getCost()));
                 count++;
             }
         }

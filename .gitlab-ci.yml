@@ -34,6 +34,7 @@ test-all:
   stage: test
   script:
     - chmod +x test/test*
+    - chmod +x test/make-result
     - test/make-result
     - diff test/test-result.sample test/test-result.out
 
@@ -46,9 +47,11 @@ pages:
     # Прогоняем Doxygen
     - doxygen doc/Doxyfile.cfg
     # Прогоняем сборку
+    - chmod +x configure
     - ./configure
     - make
     # Прогоняем тесты
+    - chmod +x test/make-result
     - test/make-result
     # Строим отчёт покрытия
     - lcov -t "lab" -o lab.info -c -d . --no-external

@@ -20,6 +20,7 @@ build-code:
     - apt-get -y install gcc g++
     - apt-get -y install make
     # Собираем
+    - chmod +x configure
     - ./configure
     - make
   # Сохраняем в артефактах

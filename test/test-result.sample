@@ -1,54 +1,54 @@
 Start
 === test/00.test ===
-a Python-разработчик python 4 180 150000
-a Java-разработчик java 6 180 120000
-a Ruby-основы ruby 1 30 5000
+a Python-developer python 4 180 150000
+a Java-developer java 6 180 120000
+a Ruby-basics ruby 1 30 5000
 s
 v
 --- Test --->
-[0] Python-разработчик python 4 180 150000
-[1] Java-разработчик java 6 180 120000
-[2] Ruby-основы ruby 1 30 5000
-Количество элементов в коллекции: 3
-Выполнение завершено успешно
+[0] Python-developer python 4 180 150000
+[1] Java-developer java 6 180 120000
+[2] Ruby-basics ruby 1 30 5000
+The number of elements in the collection: 3
+Execution completed successfully
 === test/01.test ===
 l
-u 2 RubyOnRails-основы ruby 1 30 6000
+u 2 RubyOnRails-basics ruby 1 30 6000
 s
 v
 --- Test --->
-[0] Python-разработчик python 4 180 150000
-[1] Java-разработчик java 6 180 120000
-[2] RubyOnRails-основы ruby 1 30 6000
-Количество элементов в коллекции: 3
-Выполнение завершено успешно
+[0] Python-developer python 4 180 150000
+[1] Java-developer java 6 180 120000
+[2] RubyOnRails-basics ruby 1 30 6000
+The number of elements in the collection: 3
+Execution completed successfully
 === test/02.test ===
 l
 r 2
 s
 v
 --- Test --->
-[0] Python-разработчик python 4 180 150000
-[1] Java-разработчик java 6 180 120000
-Количество элементов в коллекции: 2
-Выполнение завершено успешно
-=== test/04.test ===
+[0] Python-developer python 4 180 150000
+[1] Java-developer java 6 180 120000
+The number of elements in the collection: 2
+Execution completed successfully
+=== test/03.test ===
 l new_file
 --- Test --->
-Ошибка при загрузке файла 'new_file'
-=== test/05.test ===
+Error while loading file 'new_file'
+=== test/04.test ===
 a something
 --- Test --->
-Некорректное количество аргументов команды add
-=== test/07.test ===
+Incorrect arguments count for add command
+=== test/05.test ===
 c all
 --- Test --->
-Некорректное количество аргументов команды clean
-=== test/08.test ===
+Incorrect arguments count for clean command
+=== test/06.test ===
 v all
 --- Test --->
-Некорректное количество аргументов команды view
-=== test/09.test ===
+Incorrect arguments count for view command
+=== test/07.test ===
 kill
 --- Test --->
-Недопустимая команда 'kill'
+Wrong command 'kill'

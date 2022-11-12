@@ -18,7 +18,7 @@ bool Application::performCommand(const vector<string> &args)
 
         if (!_col.loadCollection(filename))
         {
-            _out.Output("Ошибка при загрузке файла '" + filename + "'");
+            _out.Output("Error while loading file '" + filename + "'");
             return false;
         }
 
@@ -31,7 +31,7 @@ bool Application::performCommand(const vector<string> &args)
 
         if (!_col.saveCollection(filename))
         {
-            _out.Output("Ошибка при сохранении файла '" + filename + "'");
+            _out.Output("Error while saving file '" + filename + "'");
             return false;
         }
 
@@ -42,7 +42,7 @@ bool Application::performCommand(const vector<string> &args)
     {
         if (args.size() != 1)
         {
-            _out.Output("Некорректное количество аргументов команды clean");
+            _out.Output("Incorrect arguments count for clean command");
             return false;
         }
 
@@ -55,7 +55,7 @@ bool Application::performCommand(const vector<string> &args)
     {
         if (args.size() != 6)
         {
-            _out.Output("Некорректное количество аргументов команды add");
+            _out.Output("Incorrect arguments count for add command");
             return false;
         }
 
@@ -67,7 +67,7 @@ bool Application::performCommand(const vector<string> &args)
     {
         if (args.size() != 2)
         {
-            _out.Output("Некорректное количество аргументов команды remove");
+            _out.Output("Incorrect arguments count for remove command");
             return false;
         }
 
@@ -79,7 +79,7 @@ bool Application::performCommand(const vector<string> &args)
     {
         if (args.size() != 7)
         {
-            _out.Output("Некорректное количество аргументов команды update");
+            _out.Output("Incorrect arguments count for update command");
             return false;
         }
 
@@ -91,7 +91,7 @@ bool Application::performCommand(const vector<string> &args)
     {
         if (args.size() != 1)
         {
-            _out.Output("Некорректное количество аргументов команды view");
+            _out.Output("Incorrect arguments count for view command");
             return false;
         }
 
@@ -107,10 +107,10 @@ bool Application::performCommand(const vector<string> &args)
             }
         }
 
-        _out.Output("Количество элементов в коллекции: " + to_string(count));
+        _out.Output("The number of elements in the collection: " + to_string(count));
         return true;
     }
 
-    _out.Output("Недопустимая команда '" + args[0] + "'");
+    _out.Output("Wrong command '" + args[0] + "'");
     return false;
 }

@@ -52,3 +52,18 @@ Incorrect arguments count for view command
 kill
 --- Test --->
 Wrong command 'kill'
+=== test/08.test ===
+u all
+--- Test --->
+Incorrect arguments count for update command
+=== test/09.test ===
+r
+--- Test --->
+Incorrect arguments count for remove command
+=== test/10.test ===
+l
+c
+v
+--- Test --->
+The number of elements in the collection: 0
+Execution completed successfully

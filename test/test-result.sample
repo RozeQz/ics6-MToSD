@@ -5,7 +5,7 @@ a Java-developer java 6 180 120000
 a Ruby-basics ruby 1 30 5000
 s
 v
-=== Test ===>
+--- Test --->
 [0] Python-developer python 4 180 150000
 [1] Java-developer java 6 180 120000
 [2] Ruby-basics ruby 1 30 5000
@@ -16,7 +16,7 @@ l
 u 2 RubyOnRails-basics ruby 1 30 6000
 s
 v
-=== Test ===>
+--- Test --->
 [0] Python-developer python 4 180 150000
 [1] Java-developer java 6 180 120000
 [2] RubyOnRails-basics ruby 1 30 6000
@@ -27,28 +27,28 @@ l
 r 2
 s
 v
-=== Test ===>
+--- Test --->
 [0] Python-developer python 4 180 150000
 [1] Java-developer java 6 180 120000
 The number of elements in the collection: 2
 Execution completed successfully
 === test/03.test ===
 l new_file
-=== Test ===>
+--- Test --->
 Error while loading file 'new_file'
 === test/04.test ===
 a something
-=== Test ===>
+--- Test --->
 Incorrect arguments count for add command
 === test/05.test ===
 c all
-=== Test ===>
+--- Test --->
 Incorrect arguments count for clean command
 === test/06.test ===
 v all
-=== Test ===>
+--- Test --->
 Incorrect arguments count for view command
 === test/07.test ===
 kill
-=== Test ===>
+--- Test --->
 Wrong command 'kill'

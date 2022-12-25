@@ -18,7 +18,7 @@ bool Application::performCommand(const vector<string> &args)
 
         if (!_col.loadCollection(filename))
         {
-            _out.Output("Error while loading file '" + filename + "'");
+            _out.Output("Ошибка при загрузке файла '" + filename + "'");
             return false;
         }
 
@@ -31,7 +31,7 @@ bool Application::performCommand(const vector<string> &args)
 
         if (!_col.saveCollection(filename))
         {
-            _out.Output("Error while saving file '" + filename + "'");
+            _out.Output("Ошибка при сохранении файла '" + filename + "'");
             return false;
         }
 
@@ -42,7 +42,7 @@ bool Application::performCommand(const vector<string> &args)
     {
         if (args.size() != 1)
         {
-            _out.Output("Incorrect arguments count for clean command");
+            _out.Output("Некорректное количество аргументов команды clean");
             return false;
         }
 
@@ -53,13 +53,25 @@ bool Application::performCommand(const vector<string> &args)
 
     if (args[0] == "a" || args[0] == "add")
     {
-        if (args.size() != 6)
+        if (args.size() != 9)
         {
-            _out.Output("Incorrect arguments count for add command");
+            _out.Output("Некорректное количество аргументов команды add");
             return false;
         }
 
-        _col.addItem(make_shared<Course>(args[1].c_str(), args[2].c_str(), stoul(args[3]), stoul(args[4]), stoul(args[5])));
+        string email = args[7];
+        Subscriber sub(email);
+        bool paid;
+        if (args[8] == "true")
+        {
+            paid = true;
+        }
+        else
+        {
+            paid = false;
+        }
+
+        _col.addItem(make_shared<Subscribtion>(stoul(args[1]), args[2].c_str(), args[3].c_str(), stoul(args[4]), stoul(args[5]), stoul(args[6]), sub, paid));
         return true;
     }
 
@@ -67,7 +79,7 @@ bool Application::performCommand(const vector<string> &args)
     {
         if (args.size() != 2)
         {
-            _out.Output("Incorrect arguments count for remove command");
+            _out.Output("Некорректное количество аргументов команды remove");
             return false;
         }
 
@@ -77,13 +89,25 @@ bool Application::performCommand(const vector<string> &args)
 
     if (args[0] == "u" || args[0] == "update")
     {
-        if (args.size() != 7)
+        if (args.size() != 10)
         {
-            _out.Output("Incorrect arguments count for update command");
+            _out.Output("Некорректное количество аргументов команды update");
             return false;
         }
 
-        _col.updateItem(stoul(args[1]), make_shared<Course>(args[2].c_str(), args[3].c_str(), stoul(args[4]), stoul(args[5]), stoul(args[6])));
+        string email = args[8];
+        Subscriber sub(email);
+        bool paid;
+        if (args[9] == "true")
+        {
+            paid = true;
+        }
+        else
+        {
+            paid = false;
+        }
+
+        _col.updateItem(stoul(args[1]), make_shared<Subscribtion>(stoul(args[2]), args[3].c_str(), args[4].c_str(), stoul(args[5]), stoul(args[6]), stoul(args[7]), sub, paid));
         return true;
     }
 
@@ -91,26 +115,67 @@ bool Application::performCommand(const vector<string> &args)
     {
         if (args.size() != 1)
         {
-            _out.Output("Incorrect arguments count for view command");
+            _out.Output("Некорректное количество аргументов команды view");
             return false;
         }
 
         size_t count = 0;
         for (size_t i = 0; i < _col.getSize(); ++i)
         {
-            const Course &item = static_cast<Course &>(*_col.getItem(i));
+            const Subscribtion &item = static_cast<Subscribtion &>(*_col.getItem(i));
+            string paid;
+
+            if (item.isPaid())
+            {
+                paid = "true";
+            }
+            else
+            {
+                paid = "false";
+            }
 
             if (!_col.isRemoved(i))
             {
-                _out.Output("[" + to_string(i) + "] " + item.getName() + " " + item.getLanguage() + " " + to_string(item.getDifficulty()) + " " + to_string(item.getDuration()) + " " + to_string(item.getCost()));
+                _out.Output("[" + to_string(i) + "] " + to_string(item.getId()) + " " + item.getName() + " " + item.getLanguage() + " " + to_string(item.getDifficulty()) + " " + to_string(item.getDuration()) + " " + to_string(item.getCost()) + " " + item.getSub().getEmail() + " " + paid);
                 count++;
             }
         }
 
-        _out.Output("The number of elements in the collection: " + to_string(count));
+        _out.Output("Количество элементов в коллекции: " + to_string(count));
         return true;
     }
 
-    _out.Output("Wrong command '" + args[0] + "'");
+    if (args[0] == "report")
+    {
+        if (args.size() != 1)
+        {
+            _out.Output("Некорректное количество аргументов команды report");
+            return false;
+        }
+
+        vector<shared_ptr<Subscribtion>> subs;
+
+        for (size_t i = 0; i < _col.getSize(); ++i)
+        {
+            const Subscribtion &item = static_cast<Subscribtion &>(*_col.getItem(i));
+
+            if (!_col.isRemoved(i))
+            {
+                subs.push_back(make_shared<Subscribtion>(item));
+            }
+        }
+
+        Manager man(subs);
+
+        for (const auto &unpaid_sub : man.getUnpaidSubscribtions())
+        {
+            _out.Output("ID Подписки: " + to_string(unpaid_sub->getId()));
+            _out.Output("\tОтправляем электронное письмо по адресу... \t" + unpaid_sub->getSub().getEmail());
+        }
+
+        return true;
+    }
+
+    _out.Output("Недопустимая команда '" + args[0] + "'");
     return false;
 }

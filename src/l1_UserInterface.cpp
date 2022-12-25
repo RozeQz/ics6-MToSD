@@ -43,6 +43,6 @@ int main(int, char **)
             return 1;
     }
 
-    cout << "Execution completed successfully" << endl;
+    cout << "Выполнение завершено успешно" << endl;
     return 0;
 }

@@ -65,6 +65,19 @@ public:
     }
 };
 
+class BooleanGenerator : public Generator_interface
+{
+public:
+    virtual std::string generate() const override
+    {
+        if (std::rand() % 2 == 0)
+        {
+            return "true";
+        }
+        return "false";
+    }
+};
+
 class WordGenerator : public Generator_interface
 {
 public:
@@ -101,6 +114,7 @@ std::string generateLine(std::string str, int line_no, const std::string &contro
         {control_character + "i", std::make_shared<LineNoGenerator>(line_no)},
         {control_character + "N", std::make_shared<NumberGenerator>()},
         {control_character + "W", std::make_shared<WordGenerator>()},
+        {control_character + "B", std::make_shared<BooleanGenerator>()},
     };
 
     for (auto &[from, gen] : replaces)

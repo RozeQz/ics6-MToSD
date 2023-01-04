@@ -43,10 +43,6 @@ class Subscribtion : public ICollectable
     Subscriber _sub;
     bool _paid;
 
-protected:
-    bool
-    invariant() const;
-
 public:
     Subscribtion() = delete;
     // Subscribtion(const Subscribtion &p) = delete;

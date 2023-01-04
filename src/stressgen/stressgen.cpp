@@ -70,11 +70,7 @@ class BooleanGenerator : public Generator_interface
 public:
     virtual std::string generate() const override
     {
-        if (std::rand() % 2 == 0)
-        {
-            return "true";
-        }
-        return "false";
+        return (std::rand() % 2 == 0) ? "true" : "false";
     }
 };
 

@@ -19,6 +19,7 @@ build-code:
     - apt-get -y install gcc g++ make cmake
     - g++ --version
     # Собираем
+    - chmod +x gomake
     - ./gomake
   # Сохраняем в артефактах
   artifacts:
@@ -45,6 +46,7 @@ pages:
     # Прогоняем Doxygen
     - doxygen doc/Doxyfile.cfg
     # Прогоняем сборку
+    - chmod +x gomakec
     - ./gomakec
     # Прогоняем тесты
     - chmod +x test/make-result*

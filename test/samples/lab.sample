@@ -1,5 +1,5 @@
 Start
-=== test/00.test ===
+=== test/source/lab/00.test ===
 add 1 Python-developer python 4 180 150000 lizapizza@yandex.ru true
 add 2 Java-developer java 6 180 120000 lexusrx300@mail.ru false
 add 3 Ruby-basics ruby 1 30 5000 fonparin@bmstu.ru false
@@ -16,42 +16,42 @@ save
 ID Подписки: 2
 	Отправляем электронное письмо по адресу... 	lexusrx300@mail.ru
 Выполнение завершено успешно
-=== test/01.test ===
+=== test/source/lab/01.test ===
 l new_file
 --- Test --->
 Ошибка при загрузке файла 'new_file'
-=== test/02.test ===
+=== test/source/lab/02.test ===
 l
 c
 v
 --- Test --->
 Количество элементов в коллекции: 0
 Выполнение завершено успешно
-=== test/03.test ===
+=== test/source/lab/03.test ===
 a something
 --- Test --->
 Некорректное количество аргументов команды add
-=== test/04.test ===
+=== test/source/lab/04.test ===
 v all
 --- Test --->
 Некорректное количество аргументов команды view
-=== test/05.test ===
+=== test/source/lab/05.test ===
 report everything
 --- Test --->
 Некорректное количество аргументов команды report
-=== test/06.test ===
+=== test/source/lab/06.test ===
 kill
 --- Test --->
 Недопустимая команда 'kill'
-=== test/07.test ===
+=== test/source/lab/07.test ===
 r
 --- Test --->
 Некорректное количество аргументов команды remove
-=== test/08.test ===
+=== test/source/lab/08.test ===
 u all
 --- Test --->
 Некорректное количество аргументов команды update
-=== test/09.test ===
+=== test/source/lab/09.test ===
 clean all
 --- Test --->
 Некорректное количество аргументов команды clean

@@ -6,6 +6,7 @@
 #include <cassert>
 #include <memory>
 #include <mutex>
+#include <map>
 
 #include <fstream>
 

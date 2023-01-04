@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
 {
     std::string control_character = "#";
     long long default_repetitions = 100;
-    bool parameters_error = false;
+    // bool parameters_error = false;
 
     std::vector<std::string> arguments(argv + 1, argv + argc);
 

@@ -161,20 +161,20 @@ int main(int argc, char *argv[])
 
     std::vector<std::string> arguments(argv + 1, argv + argc);
 
-    if (arguments.empty())
-        ;
-    else if (arguments.size() != 2)
-        parameters_error = true;
-    else if (arguments[0] != "--control-character")
-        parameters_error = true;
-    else
-        control_character = arguments[1][0];
+    // if (arguments.empty())
+    //     ;
+    // else if (arguments.size() != 2)
+    //     parameters_error = true;
+    // else if (arguments[0] != "--control-character")
+    //     parameters_error = true;
+    // else
+    //     control_character = arguments[1][0];
 
-    if (parameters_error)
-    {
-        std::cerr << "Error in the program launch line" << std::endl;
-        return 1;
-    }
+    // if (parameters_error)
+    // {
+    //     std::cerr << "Error in the program launch line" << std::endl;
+    //     return 1;
+    // }
 
     for (std::string line; std::getline(std::cin, line);)
     {

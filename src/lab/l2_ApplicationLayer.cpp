@@ -156,3 +156,28 @@ void Application::work()
     _out.Output("Недопустимая команда '" + args[0] + "'");
     return;
 }
+
+std::vector<std::string> Application::split(const std::string &str)
+{
+    std::vector<std::string> res;
+    size_t start_pos = 0,
+           end_pos = 0;
+
+    while (end_pos < str.size())
+    {
+        for (start_pos = end_pos; start_pos < str.size(); ++start_pos)
+            if (str[start_pos] != ' ')
+                break;
+
+        if (start_pos == str.size())
+            return res;
+
+        for (end_pos = start_pos; end_pos < str.size(); ++end_pos)
+            if (str[end_pos] == ' ')
+                break;
+
+        res.push_back(str.substr(start_pos, end_pos - start_pos));
+    }
+
+    return res;
+}

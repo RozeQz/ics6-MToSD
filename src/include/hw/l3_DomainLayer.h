@@ -34,12 +34,12 @@ public:
 
 class Subscribtion : public ICollectable
 {
-    uint32_t _id;
+    int _id;
     std::string _name;
     std::string _language;
-    uint8_t _difficulty;
-    uint16_t _duration;
-    uint32_t _cost;
+    int _difficulty;
+    int _duration;
+    int _cost;
     Subscriber _sub;
     bool _paid;
 
@@ -49,14 +49,14 @@ public:
 
     Subscribtion &operator=(const Subscribtion &p) = delete;
 
-    Subscribtion(uint32_t _id, const std::string &_name, const std::string &_language, uint8_t _difficulty, uint16_t _duration, uint32_t _cost, Subscriber _sub, bool paid);
+    Subscribtion(int _id, const std::string &_name, const std::string &_language, int _difficulty, int _duration, int _cost, Subscriber _sub, bool paid);
 
-    uint32_t getId() const;
+    int getId() const;
     const std::string &getName() const;
     const std::string &getLanguage() const;
-    uint8_t getDifficulty() const;
-    uint16_t getDuration() const;
-    uint32_t getCost() const;
+    int getDifficulty() const;
+    int getDuration() const;
+    int getCost() const;
     Subscriber getSub() const;
     bool isPaid() const;
 

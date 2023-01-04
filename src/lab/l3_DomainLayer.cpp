@@ -5,15 +5,15 @@
 
 using namespace std;
 
-Subscriber::Subscriber(const std::string email) : _email(email){};
+Subscriber::Subscriber(const std::string email) : _email(email) {}
 
 const string Subscriber::getEmail() const
 {
     return _email;
 }
 
-Subscribtion::Subscribtion(uint32_t id, const std::string &name, const std::string &language, uint8_t difficulty, uint16_t duration, uint32_t cost, Subscriber sub, bool paid)
-    : _id(id), _name(name), _language(language), _difficulty(difficulty), _duration(duration), _cost(cost), _sub(sub), _paid(paid){};
+Subscribtion::Subscribtion(int id, const std::string &name, const std::string &language, int difficulty, int duration, int cost, Subscriber sub, bool paid)
+    : _id(id), _name(name), _language(language), _difficulty(difficulty), _duration(duration), _cost(cost), _sub(sub), _paid(paid) {}
 
 const string &Subscribtion::getName() const
 {
@@ -25,22 +25,22 @@ const string &Subscribtion::getLanguage() const
     return _language;
 }
 
-uint8_t Subscribtion::getDifficulty() const
+int Subscribtion::getDifficulty() const
 {
     return _difficulty;
 }
 
-uint16_t Subscribtion::getDuration() const
+int Subscribtion::getDuration() const
 {
     return _duration;
 }
 
-uint32_t Subscribtion::getCost() const
+int Subscribtion::getCost() const
 {
     return _cost;
 }
 
-uint32_t Subscribtion::getId() const
+int Subscribtion::getId() const
 {
     return _id;
 }
@@ -76,7 +76,7 @@ bool Subscribtion::write(ostream &os)
     return os.good();
 }
 
-Manager::Manager(std::vector<shared_ptr<Subscribtion>> _list_of_subs) : _list_of_subs(_list_of_subs){};
+Manager::Manager(std::vector<shared_ptr<Subscribtion>> _list_of_subs) : _list_of_subs(_list_of_subs) {}
 
 vector<shared_ptr<Subscribtion>> Manager::getUnpaidSubscribtions()
 {
@@ -93,12 +93,12 @@ vector<shared_ptr<Subscribtion>> Manager::getUnpaidSubscribtions()
 
 shared_ptr<ICollectable> ItemCollector::read(istream &is)
 {
-    uint32_t id = readNumber<uint32_t>(is);
+    int id = readNumber<int>(is);
     string name = readString(is, MAX_NAME_LENGTH);
     string language = readString(is, MAX_LANGUAGE_LENGTH);
-    uint8_t difficulty = readNumber<uint8_t>(is);
-    uint16_t duration = readNumber<uint16_t>(is);
-    uint32_t cost = readNumber<uint32_t>(is);
+    int difficulty = readNumber<int>(is);
+    int duration = readNumber<int>(is);
+    int cost = readNumber<int>(is);
     string email = readString(is, 50);
     string paid_str = readString(is, 8);
     bool paid = (paid_str == "true");

@@ -20,9 +20,9 @@ class Subscriber
 
 public:
     Subscriber() = delete;
-    // Subscriber(const Subscriber &s) = delete;
+    Subscriber(const Subscriber &s);
 
-    Subscriber &operator=(const Subscriber &s) = delete;
+    Subscriber &operator=(const Subscriber &s);
 
     Subscriber(const std::string email);
 
@@ -45,9 +45,10 @@ protected:
 
 public:
     Subscribtion() = delete;
-    // Subscribtion(const Subscribtion &p) = delete;
 
-    Subscribtion &operator=(const Subscribtion &p) = delete;
+    Subscribtion &operator=(const Subscribtion &s);
+
+    Subscribtion(const Subscribtion &s);
 
     Subscribtion(int _id, const std::string &_name, const std::string &_language, int _difficulty, int _duration, int _cost, Subscriber _sub, bool paid);
 

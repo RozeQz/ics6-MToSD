@@ -9,6 +9,7 @@
 #include <map>
 
 #include <fstream>
+#include <iostream>
 
 template <typename T>
 T readNumber(std::istream &is)
@@ -51,6 +52,11 @@ public:
     std::shared_ptr<ICollectable> item() const { return _item; }
 
     void remove() { _removed_signs = true; }
+
+    void setItem(std::shared_ptr<ICollectable> item)
+    {
+        _item = item;
+    }
 };
 
 class ACollector
@@ -115,7 +121,7 @@ public:
         auto it = _items.find(index);
         if (it == _items.end())
             return false;
-        it->second.item() = item;
+        it->second.setItem(item);
         return true;
     }
 

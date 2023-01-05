@@ -70,7 +70,8 @@ void Application::work()
 
         bool paid = (args[9] == "true") ? true : false;
 
-        _col.updateItem(stoul(args[1]), std::make_shared<Subscribtion>(stoul(args[2]), args[3].c_str(), args[4].c_str(), stoul(args[5]), stoul(args[6]), stoul(args[7]), sub, paid));
+        std::shared_ptr<Subscribtion> new_item = std::make_shared<Subscribtion>(stoul(args[2]), args[3].c_str(), args[4].c_str(), stoul(args[5]), stoul(args[6]), stoul(args[7]), sub, paid);
+        _col.updateItem(stoul(args[1]), new_item);
         return;
     }
 

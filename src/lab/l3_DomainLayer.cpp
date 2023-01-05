@@ -12,6 +12,17 @@ bool Subscribtion::invariant() const
 
 Subscriber::Subscriber(const std::string email) : _email(email) {}
 
+Subscriber::Subscriber(const Subscriber &s)
+{
+    _email = s.getEmail();
+}
+
+Subscriber &Subscriber::operator=(const Subscriber &s)
+{
+    _email = s.getEmail();
+    return *this;
+}
+
 const string Subscriber::getEmail() const
 {
     return _email;
@@ -19,6 +30,30 @@ const string Subscriber::getEmail() const
 
 Subscribtion::Subscribtion(int id, const std::string &name, const std::string &language, int difficulty, int duration, int cost, Subscriber sub, bool paid)
     : _id(id), _name(name), _language(language), _difficulty(difficulty), _duration(duration), _cost(cost), _sub(sub), _paid(paid) {}
+
+Subscribtion::Subscribtion(const Subscribtion &s) : _sub(s.getSub())
+{
+    _id = s.getId();
+    _name = "hui";
+    _language = s.getLanguage();
+    _difficulty = s.getDifficulty();
+    _duration = s.getDuration();
+    _cost = s.getCost();
+    _paid = s.isPaid();
+}
+
+Subscribtion &Subscribtion::operator=(const Subscribtion &s)
+{
+    _id = s.getId();
+    _name = "hui";
+    _language = s.getLanguage();
+    _difficulty = s.getDifficulty();
+    _duration = s.getDuration();
+    _cost = s.getCost();
+    _paid = s.isPaid();
+    _sub = s.getSub();
+    return *this;
+}
 
 const string &Subscribtion::getName() const
 {

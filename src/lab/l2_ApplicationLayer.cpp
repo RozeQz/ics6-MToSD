@@ -38,15 +38,8 @@ void Application::work()
 
         std::string email = args[7];
         Subscriber sub(email);
-        bool paid;
-        if (args[8] == "true")
-        {
-            paid = true;
-        }
-        else
-        {
-            paid = false;
-        }
+
+        bool paid = (args[8] == "true") ? true : false;
 
         _col.addItem(std::make_shared<Subscribtion>(stoul(args[1]), args[2].c_str(), args[3].c_str(), stoul(args[4]), stoul(args[5]), stoul(args[6]), sub, paid));
         return;
@@ -74,15 +67,8 @@ void Application::work()
 
         std::string email = args[8];
         Subscriber sub(email);
-        bool paid;
-        if (args[9] == "true")
-        {
-            paid = true;
-        }
-        else
-        {
-            paid = false;
-        }
+
+        bool paid = (args[9] == "true") ? true : false;
 
         _col.updateItem(stoul(args[1]), std::make_shared<Subscribtion>(stoul(args[2]), args[3].c_str(), args[4].c_str(), stoul(args[5]), stoul(args[6]), stoul(args[7]), sub, paid));
         return;
@@ -97,22 +83,13 @@ void Application::work()
         }
 
         size_t count = 0;
-        for (size_t i = 0; i < _col.getSize(); ++i)
+        for (size_t i = 1; i <= _col.getSize(); ++i)
         {
-            const Subscribtion &item = static_cast<Subscribtion &>(*_col.getItem(i));
-            std::string paid;
-
-            if (item.isPaid())
-            {
-                paid = "true";
-            }
-            else
-            {
-                paid = "false";
-            }
-
             if (!_col.isRemoved(i))
             {
+                const Subscribtion &item = _col.getSubscribtion(i);
+                std::string paid = (item.isPaid()) ? "true" : "false";
+
                 _out.Output("[" + std::to_string(i) + "] " + std::to_string(item.getId()) + " " + item.getName() + " " + item.getLanguage() + " " + std::to_string(item.getDifficulty()) + " " + std::to_string(item.getDuration()) + " " + std::to_string(item.getCost()) + " " + item.getSub().getEmail() + " " + paid);
                 count++;
             }
@@ -132,9 +109,9 @@ void Application::work()
 
         std::vector<std::shared_ptr<Subscribtion>> subs;
 
-        for (size_t i = 0; i < _col.getSize(); ++i)
+        for (size_t i = 1; i <= _col.getSize(); ++i)
         {
-            const Subscribtion &item = static_cast<Subscribtion &>(*_col.getItem(i));
+            const Subscribtion &item = _col.getSubscribtion(i);
 
             if (!_col.isRemoved(i))
             {
@@ -143,13 +120,16 @@ void Application::work()
         }
 
         Manager man(subs);
+        int count = 0;
 
         for (const auto &unpaid_sub : man.getUnpaidSubscribtions())
         {
             _out.Output("ID Подписки: " + std::to_string(unpaid_sub->getId()));
             _out.Output("\tОтправляем электронное письмо по адресу... \t" + unpaid_sub->getSub().getEmail());
+            count++;
         }
 
+        _out.Output("\nИтого рассылок: " + std::to_string(count));
         return;
     }
 

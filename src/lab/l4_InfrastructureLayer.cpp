@@ -1,10 +1,8 @@
 #include "hw/l4_InfrastructureLayer.h"
 
-std::string readString(std::istream &is, size_t max_string_length)
+std::string readString(std::istream &is)
 {
     uint16_t len = readNumber<uint16_t>(is);
-
-    assert(len <= max_string_length);
 
     std::string str(len, ' ');
     if (len > 0)

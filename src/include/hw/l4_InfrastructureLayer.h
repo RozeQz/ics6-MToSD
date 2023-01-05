@@ -24,7 +24,7 @@ void writeNumber(std::ostream &os, T i)
     os.write(reinterpret_cast<char *>(&i), sizeof(i));
 }
 
-std::string readString(std::istream &is, size_t max_string_length);
+std::string readString(std::istream &is);
 void writeString(std::ostream &os, const std::string &s);
 
 class ICollectable
@@ -105,7 +105,7 @@ public:
         auto it = _items.find(index);
         if (it == _items.end())
             return false;
-        it->second.remove();
+        it->second.remove(); // _items.erase(it) - если реально хочу удалить
         return true;
     }
 

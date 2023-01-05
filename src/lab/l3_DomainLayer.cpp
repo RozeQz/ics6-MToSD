@@ -5,6 +5,11 @@
 
 using namespace std;
 
+bool Subscribtion::invariant() const
+{
+    return (_id >= 0) && !_name.empty() && !_language.empty() && (_difficulty >= 0) && (_cost >= 0);
+}
+
 Subscriber::Subscriber(const std::string email) : _email(email) {}
 
 const string Subscriber::getEmail() const
@@ -66,11 +71,11 @@ bool Subscribtion::write(ostream &os)
     writeString(os, _sub.getEmail());
     if (_paid)
     {
-        writeString(os, "paid");
+        writeString(os, "true");
     }
     else
     {
-        writeString(os, "not paid");
+        writeString(os, "false");
     }
 
     return os.good();
@@ -94,15 +99,24 @@ vector<shared_ptr<Subscribtion>> Manager::getUnpaidSubscribtions()
 shared_ptr<ICollectable> ItemCollector::read(istream &is)
 {
     int id = readNumber<int>(is);
-    string name = readString(is, MAX_NAME_LENGTH);
-    string language = readString(is, MAX_LANGUAGE_LENGTH);
+    string name = readString(is);
+    string language = readString(is);
     int difficulty = readNumber<int>(is);
     int duration = readNumber<int>(is);
     int cost = readNumber<int>(is);
-    string email = readString(is, 50);
-    string paid_str = readString(is, 8);
+    string email = readString(is);
+    string paid_str = readString(is);
     bool paid = (paid_str == "true");
     Subscriber sub = Subscriber(email);
 
     return std::make_shared<Subscribtion>(id, name, language, difficulty, duration, cost, sub, paid);
+}
+
+Subscribtion &ItemCollector::getSubscribtion(size_t index)
+{
+    Subscribtion *p = static_cast<Subscribtion *>(getItem(index).get());
+
+    assert(p != nullptr);
+
+    return *p;
 }

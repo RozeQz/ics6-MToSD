@@ -11,11 +11,8 @@ Copyright (c) 2019 МГТУ им. Н.Э. Баумана, кафедра ИУ-6, 
 
 #include "hw/l4_InfrastructureLayer.h"
 
-const size_t MAX_NAME_LENGTH = 256;
-const size_t MAX_LANGUAGE_LENGTH = 64;
-const size_t MAX_DIFFICULTY = 10;
-const size_t MIN_DURATION = 1;
-const size_t MAX_DURATION = 1024;
+#include <string>
+#include <vector>
 
 class Subscriber
 {
@@ -43,6 +40,9 @@ class Subscribtion : public ICollectable
     Subscriber _sub;
     bool _paid;
 
+protected:
+    bool invariant() const;
+
 public:
     Subscribtion() = delete;
     // Subscribtion(const Subscribtion &p) = delete;
@@ -67,6 +67,8 @@ class ItemCollector : public ACollector
 {
 public:
     virtual std::shared_ptr<ICollectable> read(std::istream &is) override;
+
+    Subscribtion &getSubscribtion(size_t index);
 };
 
 class Manager : public ItemCollector

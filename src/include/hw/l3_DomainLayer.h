@@ -22,7 +22,7 @@ public:
     Subscriber() = delete;
     Subscriber(const Subscriber &s);
 
-    Subscriber &operator=(const Subscriber &s);
+    Subscriber &operator=(const Subscriber &s) = delete;
 
     Subscriber(const std::string email);
 
@@ -46,7 +46,7 @@ protected:
 public:
     Subscribtion() = delete;
 
-    Subscribtion &operator=(const Subscribtion &s);
+    Subscribtion &operator=(const Subscribtion &s) = delete;
 
     Subscribtion(const Subscribtion &s);
 

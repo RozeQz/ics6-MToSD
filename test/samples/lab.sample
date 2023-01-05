@@ -3,19 +3,18 @@ Start
 add 1 Python-developer python 4 180 150000 lizapizza@yandex.ru true
 add 2 Java-developer java 6 180 120000 lexusrx300@mail.ru false
 add 3 Ruby-basics ruby 1 30 5000 fonparin@bmstu.ru false
-r 2
 --- Test --->
 Выполнение команд завершено
 === test/source/lab/01.test ===
-v
+r 2
 --- Test --->
-[1] 2 Java-developer java 6 180 120000 lexusrx300@mail.ru false
-[3] 1 Python-developer python 4 180 150000 lizapizza@yandex.ru true
-Количество элементов в коллекции: 2
 Выполнение команд завершено
 === test/source/lab/02.test ===
-a something--- Test --->
-Некорректное количество аргументов команды add
+v
+--- Test --->
+[1] 1 Python-developer python 4 180 150000 lizapizza@yandex.ru true
+[3] 3 Ruby-basics ruby 1 30 5000 fonparin@bmstu.ru false
+Количество элементов в коллекции: 2
 Выполнение команд завершено
 === test/source/lab/03.test ===
 c
@@ -48,10 +47,15 @@ u all
 Некорректное количество аргументов команды update
 Выполнение команд завершено
 === test/source/lab/09.test ===
+a something
+--- Test --->
+Некорректное количество аргументов команды add
+Выполнение команд завершено
+=== test/source/lab/10.test ===
 report
 --- Test --->
-ID Подписки: 2
-	Отправляем электронное письмо по адресу... 	lexusrx300@mail.ru
+ID Подписки: 3
+	Отправляем электронное письмо по адресу... 	fonparin@bmstu.ru
 
 Итого рассылок: 1 на 3 подписки.
 Выполнение команд завершено

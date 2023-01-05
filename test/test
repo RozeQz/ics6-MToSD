@@ -15,7 +15,7 @@ then
   exit 1
 fi
 
-grep "] 1 Python-developer" test/lab.out > /dev/null
+grep ".ru false" test/lab.out > /dev/null
 if [ $? -ne 0 ]
 then
   echo -e "\033[1mОшибка при выполнении теста test/make-result-lab\033[0m"

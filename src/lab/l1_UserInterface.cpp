@@ -16,16 +16,6 @@ void TerminalOutput::Output(std::string s) const
     std::cout << s << std::endl;
 }
 
-int convertToInteger(const std::string &str)
-try
-{
-    return std::stoi(str);
-}
-catch (...)
-{
-    return 0;
-}
-
 void performCommandsSimultaneously(std::istream &is, ItemCollector &col, const TerminalOutput &out, int number_of_threads)
 {
     tp::ThreadPool tp(number_of_threads);
@@ -59,35 +49,15 @@ int main(int argc, char *argv[])
 
     // Разбираем командную строку
     std::vector<std::string> arguments(argv + 1, argv + argc);
-    for (const std::string &arg : arguments)
-        if (std::to_string(convertToInteger(arg)) == arg)
-            number_of_threads = convertToInteger(arg);
-        else
-            input_file_name = arg;
 
     // Соединение и загрузка хранилища
     col.loadCollection(data_file_name);
 
     // Работа с файлом команд через файл, а не пайп может быть полезна, если нужна отладка
-    if (input_file_name.empty())
-        performCommandsSimultaneously(std::cin, col, out, number_of_threads);
-    else
-    {
-        std::ifstream ifs(input_file_name);
-        if (!ifs)
-        {
-            out.Output("Ошибка при открытии файла команд '" + input_file_name + "'");
-            return 1;
-        }
-        performCommandsSimultaneously(ifs, col, out, number_of_threads);
-    }
+    performCommandsSimultaneously(std::cin, col, out, number_of_threads);
 
     // Сохраняем данные в хранилище
-    if (!col.saveCollection())
-    {
-        out.Output("Ошибка при сохранении файла данных '" + col.data_file_name() + "'");
-        return 1;
-    }
+    col.saveCollection();
 
     std::cout << "Выполнение команд завершено" << std::endl;
     return 0;

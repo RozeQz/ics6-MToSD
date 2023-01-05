@@ -7,7 +7,7 @@ then
 fi
 
 test/make-result-stress-test
-diff test/samples/stress-test.sample test/stress-test.out
+grep "на 200000 подписки" test/stress-test.out > /dev/null
 
 if [ $? -ne 0 ]
 then

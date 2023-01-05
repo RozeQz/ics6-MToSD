@@ -129,7 +129,7 @@ void Application::work()
             count++;
         }
 
-        _out.Output("\nИтого рассылок: " + std::to_string(count));
+        _out.Output("\nИтого рассылок: " + std::to_string(count) + " на " + std::to_string(_col.getSize()) + " подписки.");
         return;
     }
 

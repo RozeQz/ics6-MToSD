@@ -1,0 +1,8 @@
+add 1 Python-developer python 4 180 150000 lizapizza@yandex.ru true
+add 2 Java-developer java 6 180 120000 lexusrx300@mail.ru false
+add 3 Ruby-basics ruby 1 30 5000 fonparin@bmstu.ru false
+view
+remove 0
+update 2 3 RubyOnRails-basics ruby 1 30 7000 fonparin@bmstu.ru true
+report
+save

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+if [ -f lab.data ]
+then
+  rm lab.data
+  echo "Файл lab.data удалён"
+fi
+
+test/make-result-lab
+
+grep "Итого рассылок: " test/lab.out > /dev/null
+if [ $? -ne 0 ]
+then
+  echo -e "\033[1mОшибка при выполнении теста test/make-result-lab\033[0m"
+  exit 1
+fi
+
+grep ".ru false" test/lab.out > /dev/null
+if [ $? -ne 0 ]
+then
+  echo -e "\033[1mОшибка при выполнении теста test/make-result-lab\033[0m"
+  exit 1
+fi
+
+grep "Количество элементов в коллекции: 2" test/lab.out > /dev/null
+if [ $? -ne 0 ]
+then
+  echo -e "\033[1mОшибка при выполнении теста test/make-result-lab\033[0m"
+  exit 1
+fi
+
+
+test/make-result-stressgen
+diff test/samples/stressgen.sample test/stressgen.out
+
+if [ $? -ne 0 ]
+then
+  echo -e "\033[1mОшибка при выполнении теста test/make-result-stressgen\033[0m"
+  exit 1
+fi

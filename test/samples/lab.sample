@@ -1,0 +1,69 @@
+Start
+=== test/source/lab/00.test ===
+add 1 Python-developer python 4 180 150000 lizapizza@yandex.ru true
+add 2 Java-developer java 6 180 120000 lexusrx300@mail.ru false
+add 3 Ruby-basics ruby 1 30 5000 fonparin@bmstu.ru false
+--- Test --->
+Выполнение команд завершено
+=== test/source/lab/01.test ===
+r 2
+r 10
+--- Test --->
+Выполнение команд завершено
+=== test/source/lab/02.test ===
+v
+--- Test --->
+[1] 2 Java-developer java 6 180 120000 lexusrx300@mail.ru false
+[3] 1 Python-developer python 4 180 150000 lizapizza@yandex.ru true
+Количество элементов в коллекции: 2
+Выполнение команд завершено
+=== test/source/lab/03.test ===
+c
+c error
+--- Test --->
+Некорректное количество аргументов команды count
+3
+Выполнение команд завершено
+=== test/source/lab/04.test ===
+v all
+--- Test --->
+Некорректное количество аргументов команды view
+Выполнение команд завершено
+=== test/source/lab/05.test ===
+report everything
+--- Test --->
+Некорректное количество аргументов команды report
+Выполнение команд завершено
+=== test/source/lab/06.test ===
+kill
+--- Test --->
+Недопустимая команда 'kill'
+Выполнение команд завершено
+=== test/source/lab/07.test ===
+r
+--- Test --->
+Некорректное количество аргументов команды remove
+Выполнение команд завершено
+=== test/source/lab/08.test ===
+u all
+--- Test --->
+Некорректное количество аргументов команды update
+Выполнение команд завершено
+=== test/source/lab/09.test ===
+a something
+--- Test --->
+Некорректное количество аргументов команды add
+Выполнение команд завершено
+=== test/source/lab/10.test ===
+report
+--- Test --->
+ID Подписки: 2
+	Отправляем электронное письмо по адресу... 	lexusrx300@mail.ru
+
+Итого рассылок: 1 на 3 подписки.
+Выполнение команд завершено
+=== test/source/lab/11.test ===
+u 2 3 RubyOnRails-base ruby 3 30 5000 fonparin@bmstu.ru true
+u 10 3 SOMETHING SOMETHING 3 30 5000 somebody@bmstu.ru false
+--- Test --->
+Выполнение команд завершено

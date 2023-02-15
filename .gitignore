@@ -1,0 +1,10 @@
+bin
+build
+lib
+doc/html
+*.data
+*.out
+*.user
+*.vscode
+coverage
+lab.info

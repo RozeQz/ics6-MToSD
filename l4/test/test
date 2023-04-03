@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [ -f lab.data ]
+if [ -f l4.data ]
 then
-  rm lab.data
-  echo "Файл lab.data удалён"
+  rm l4.data
+  echo "Файл l4.data удалён"
 fi
 
 test/make-result-lab

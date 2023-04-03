@@ -48,8 +48,11 @@ jobs:
         run: |
           # Устанавливаем пакеты
           sudo apt-get -y install gcc g++ make cmake lcov
-          # Прогоняем тесты
+          # Прогоняем сборку
           cd l4
+          sudo chmod +x gomakec
+          ./gomakec
+          # Прогоняем тесты
           sudo chmod +x test/make-result*
           sudo chmod +x test/test
           test/test

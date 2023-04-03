@@ -1,4 +1,4 @@
-[![codecov](https://codecov.io/gh/RozeQz/ics6-MToSD/branch/main/graph/badge.svg?token=${{ secrets.CODECOV_TOKEN }})](https://codecov.io/gh/RozeQz/ics6-MToSD)
+[![codecov](https://codecov.io/gh/RozeQz/ics6-MToSD/branch/master/graph/badge.svg?token=5LDKTTLI4J&flag=l1)](https://codecov.io/gh/RozeQz/ics6-MToSD)
 
 <div align="center">
 Министерство науки и высшего образования Российской Федерации <br />

@@ -54,10 +54,10 @@ jobs:
           sudo chmod +x ./test/make-result
           ./test/make-result
           # Строим отчёт покрытия
-          lcov -t "lab" -o lab.info -c -d . --no-external
+          lcov -t "lab" -o l1.info -c -d . --no-external
 
       - name: Upload coverage report
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./l1/lab.info
+          file: ./l1/l1.info

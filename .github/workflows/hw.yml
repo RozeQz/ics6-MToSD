@@ -47,10 +47,8 @@ jobs:
         run: |
           # Устанавливаем пакеты
           sudo apt-get -y install gcc g++ make lcov
-          # Прогоняем сборку
-          cd hw
-          g++ main.cpp -o main -std=c++17 -O0 --coverage
           # Прогоняем тесты
+          cd hw
           sudo chmod +x ./test*.*
           sudo chmod +x ./main
           ./main

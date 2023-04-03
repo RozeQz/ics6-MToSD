@@ -49,12 +49,8 @@ jobs:
         run: |
           # Устанавливаем пакеты
           sudo apt-get -y install gcc g++ make lcov
-          # Прогоняем сборку
-          cd l2
-          chmod +x configure
-          ./configure
-          make
           # Прогоняем тесты
+          cd l2
           sudo chmod +x ./test/make-result
           ./test/make-result
           # Строим отчёт покрытия

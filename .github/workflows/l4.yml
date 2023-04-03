@@ -1,4 +1,4 @@
-name: l3_ci
+name: l4_ci
 
 on: [push, pull_request]
 
@@ -24,14 +24,14 @@ jobs:
           sudo apt-get update
           sudo apt-get -y install gcc g++ make cmake
           # Собираем
-          cd l3
+          cd l4
           sudo chmod +x gomake
           ./gomake
 
       - name: Test
         run: |
           # Автотесты
-          cd l3
+          cd l4
           sudo chmod +x test/make-result*
           sudo chmod +x test/test
           sudo chmod +x test/stress
@@ -40,7 +40,7 @@ jobs:
 
       - name: Documentation 
         run: |
-          cd l3
+          cd l4
           sudo apt-get -y install doxygen
           doxygen doc/Doxyfile.cfg
 
@@ -49,15 +49,15 @@ jobs:
           # Устанавливаем пакеты
           sudo apt-get -y install gcc g++ make cmake lcov
           # Прогоняем тесты
-          cd l3
+          cd l4
           sudo chmod +x test/make-result*
           sudo chmod +x test/test
           test/test
           # Строим отчёт покрытия
-          lcov -t "lab" -o l3.info -c -d . --no-external
+          lcov -t "lab" -o l4.info -c -d . --no-external
 
       - name: Upload coverage report
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./l3/l3.info
+          file: ./l4/l4.info

@@ -1,0 +1,57 @@
+name: l1_ci
+
+on:
+  push:
+
+  pull_request:
+
+
+jobs:
+  before-script:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: before-script
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          export TZ=Europe/Moscow
+
+  build-and-test-code:
+    runs-on: ubuntu-latest
+    needs: before-script
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build code
+        run: |
+          # Устанавливаем пакеты
+          sudo apt-get update
+          sudo apt-get -y install gcc g++
+          sudo apt-get -y install make 
+          # Собираем
+          cd l1
+          sudo chmod +x ./configure
+          ./configure
+          make
+
+      - name: Tests
+        run: |
+          # Автотесты
+          cd l1
+          sudo chmod +x ./test/test*.*
+          sudo chmod +x ./test/make-result
+          ./test/make-result
+          diff ./test/test-result.sample ./test/test-result.out
+
+      - name: Documentation 
+        run: |
+          cd l1
+          sudo apt-get -y install doxygen
+          doxygen doc/Doxyfile.cfg
+
+      - name: Upload coverage report
+        run: |
+          cd l1
+          bash <(curl -s https://codecov.io/bash)
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

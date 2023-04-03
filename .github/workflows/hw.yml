@@ -43,6 +43,20 @@ jobs:
           sudo apt-get -y install doxygen
           doxygen Doxyfile.cfg
 
+      - name: Make coverage report
+        run: |
+          # Устанавливаем пакеты
+          apt-get -y install gcc g++ make lcov
+          # Прогоняем сборку
+          cd hw
+          g++ main.cpp -o main -std=c++17 -O0 --coverage
+          # Прогоняем тесты
+          sudo chmod +x ./test*.*
+          sudo chmod +x ./main
+          ./main
+          # Строим отчёт покрытия
+          lcov -t "lab" -o lab.info -c -d . --no-external
+
       - name: Upload coverage report
         uses: codecov/codecov-action@v3
         with:

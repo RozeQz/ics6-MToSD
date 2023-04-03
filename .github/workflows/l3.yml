@@ -1,0 +1,64 @@
+name: l2_ci
+
+on: [push, pull_request]
+
+jobs:
+  before-script:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: before-script
+        run: |
+          export DEBIAN_FRONTEND=noninteractive
+          export TZ=Europe/Moscow
+
+  build-and-test-code:
+    runs-on: ubuntu-latest
+    needs: before-script
+    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build code
+        run: |
+          # Устанавливаем пакеты
+          sudo apt-get update
+          sudo apt-get -y install gcc g++ make cmake
+          # Собираем
+          cd l3
+          sudo chmod +x gomake
+          sudo chmod +x ./configure
+          ./gomake
+
+      - name: Test
+        run: |
+          # Автотесты
+          cd l3
+          sudo chmod +x test/make-result*
+          sudo chmod +x test/test
+          sudo chmod +x test/stress
+          test/test
+          test/stress
+
+      - name: Documentation 
+        run: |
+          cd l3
+          sudo apt-get -y install doxygen
+          doxygen doc/Doxyfile.cfg
+
+      - name: Make coverage report
+        run: |
+          # Устанавливаем пакеты
+          sudo apt-get -y install gcc g++ make cmake lcov
+          # Прогоняем тесты
+          cd l3
+          sudo chmod +x test/make-result*
+          sudo chmod +x test/test
+          test/test
+          # Строим отчёт покрытия
+          lcov -t "lab" -o l3.info -c -d . --no-external
+
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./l3/l3.info

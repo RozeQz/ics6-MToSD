@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [ -f l3.data ]
+if [ -f lab.data ]
 then
-  rm l3.data
-  echo "Файл l3.data удалён"
+  rm lab.data
+  echo "Файл lab.data удалён"
 fi
 
 test/make-result-stress-test

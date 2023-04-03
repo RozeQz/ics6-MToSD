@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [ -f l4.data ]
+if [ -f lab.data ]
 then
-  rm l4.data
-  echo "Файл l4.data удалён"
+  rm lab.data
+  echo "Файл lab.data удалён"
 fi
 
 test/make-result-lab
@@ -11,21 +11,21 @@ test/make-result-lab
 grep "Итого рассылок: " test/lab.out > /dev/null
 if [ $? -ne 0 ]
 then
-  echo -e "\033[1mОшибка при выполнении теста test/make-result-lab\033[0m"
+  echo -e "\033[1mОшибка при выполнении теста 1 test/make-result-lab\033[0m"
   exit 1
 fi
 
 grep ".ru false" test/lab.out > /dev/null
 if [ $? -ne 0 ]
 then
-  echo -e "\033[1mОшибка при выполнении теста test/make-result-lab\033[0m"
+  echo -e "\033[1mОшибка при выполнении теста 2 test/make-result-lab\033[0m"
   exit 1
 fi
 
 grep "Количество элементов в коллекции: 2" test/lab.out > /dev/null
 if [ $? -ne 0 ]
 then
-  echo -e "\033[1mОшибка при выполнении теста test/make-result-lab\033[0m"
+  echo -e "\033[1mОшибка при выполнении теста 3 test/make-result-lab\033[0m"
   exit 1
 fi
 

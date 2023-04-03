@@ -48,7 +48,7 @@ jobs:
       - name: Make coverage report
         run: |
           # Устанавливаем пакеты
-          apt-get -y install gcc g++ make lcov
+          sudo apt-get -y install gcc g++ make lcov
           # Прогоняем сборку
           cd l1
           chmod +x configure
